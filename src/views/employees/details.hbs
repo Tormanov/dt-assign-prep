@@ -1,0 +1,25 @@
+<main>
+    <section id="details-info">
+        <h1>Details</h1>
+        <div class="coin-image">
+            <img src="{{crypto.image}}">
+        </div>
+
+        <div class="coin-info">
+            <div class="coin-text">
+                <h1 id="name">{{employee.name}}</h1>
+                <h3 id="payment">Email: {{employee.email}}</h3>
+                <h3 id="payment">Phone: {{employee.phone}}</h3>
+                <p id="price"><span>Monthly Salary: ${{employee.monthlySalary}}</span></p>
+                <p id="description">{{employee.tasksAssigned}}</p>
+            </div>
+            <div class="product-btn">
+                <div class="author">
+                    <a href="/employees/{{employee._id}}/edit" class="btn-edit">Edit</a>
+                    <a href="/employees/{{employee._id}}/delete" class="btn-delete">Delete</a>
+                </div>
+
+            </div>
+        </div>
+    </section>
+</main>

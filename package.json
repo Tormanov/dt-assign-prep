@@ -2,10 +2,10 @@
   "name": "dt-assign-prep",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "src/index.js",
   "scripts": {
-    "test": "nodemon index.js",
-    "start": "index.js"
+    "test": "nodemon ./src/index.js",
+    "start": "/src/index.js"
   },
   "repository": {
     "type": "git",

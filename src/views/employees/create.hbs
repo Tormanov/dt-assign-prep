@@ -1,0 +1,28 @@
+<main>
+    <!-- In case of error, you should display div with class "errorContainer" -->
+    <!-- You can choose to display the first error or all of them (error message/s in your opinion) -->
+
+    <!-- <div>
+            <div class="errorContainer">
+                <p>Error</p>
+            </div>
+        </div> -->
+    <section id="create-container">
+        <div class="create-container-info">
+            <h1>Add Employee</h1>
+            <form method="POST">
+                <label>Name:</label>
+                <input type="text" id="name" name="name" placeholder="Please use your full name">
+                <label>Email:</label>
+                <input type="text" id="email" name="email" placeholder="example@example.com">
+                <label>Phone Number:</label>
+                <input type="number" id="phone" name="phone">
+                <label>Date of Birth:</label>
+                <input type="date" id="dob" name="dob" min="1900-01-01" max="2020-01-01">
+                <label>Monthly Salary:</label>
+                <input type="number" id="monthlySalary" name="monthlySalary">
+                <input type="submit" id="btn" value="Add" />
+            </form>
+        </div>
+    </section>
+</main>

@@ -1,5 +1,6 @@
 const express = require('express');
 const handlebars = require('express-handlebars');
+const path = require('path');
 
 const routes = require('./router');
 const initDatabase = require('./config/databaseInit');
@@ -11,8 +12,9 @@ app.engine('hbs', handlebars.engine({
 }));
 
 app.set('view engine', 'hbs');
+app.set('views', path.join(__dirname, '/views'))
 
-app.use('/static', express.static('public'));
+app.use('/static', express.static(path.join(__dirname, 'public')));
 app.use(express.urlencoded({ extended: false }));
 app.use(routes);
 

@@ -1,0 +1,18 @@
+<main>
+    <section class="crypto-market">
+        <h1><span>Employees</span></h1>
+        {{#if employees}}
+        <a href="/employees/create" class="add">Add Employee</a>
+        <div class="offer-list">
+            {{#each employees}}
+            {{>employee}}
+            {{/each}}
+        </div>
+        {{else}}
+        <div class="no-employee">
+            <p>There are no employees found!</p>
+        </div>
+        <a href="/employees/create" class="add">Add Employee</a>
+        {{/if}}
+    </section>
+</main>
