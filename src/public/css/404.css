@@ -1,3 +1,11 @@
+.not-found-page-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
 .not-found-page-container p a {
     color: #ff960b;
     text-decoration: none;
@@ -9,17 +17,23 @@
 }
 
 .not-found-page-container h1 {
+    color: #ff960b;
     font-size: 100px;
     margin-left: 200px;
     margin-top: 10%;
 }
 
 .not-found-page-container h2 {
+    color: black;
     font-size: 30px;
     margin-left: 170px;
     margin-top: 1%;
+
+
 }
 
 .not-found-page-container>p {
+    color: black;
     margin-top: 2%;
+
 }

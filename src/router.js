@@ -7,5 +7,8 @@ const taskController = require('./controllers/taskController');
 router.use(homeController);
 router.use('/employees', employeeController);
 router.use('/tasks', taskController);
+router.all('*', (req, res) => {
+    res.render('home/404')
+})
 
 module.exports = router;

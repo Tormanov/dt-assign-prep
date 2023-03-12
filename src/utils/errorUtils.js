@@ -1,6 +1,6 @@
 function getFirstMongooseError(error) {
-    const firstError = Object.keys(error.errors)[0].message;
-    return firstError;
+    const errors = Object.keys(error.errors).map(key => error.errors[key].message);
+    return errors[0];
 }
 
 exports.getErrorMessage = (error) => {

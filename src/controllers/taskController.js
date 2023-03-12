@@ -56,6 +56,7 @@ router.get('/create', async (req, res) => {
 
 router.post('/create', async (req, res) => {
     const { title, description, assignee, dueDate } = req.body;
+    const employees = await employeeService.getAll();
 
     try {
 
@@ -64,7 +65,7 @@ router.post('/create', async (req, res) => {
 
 
     } catch (error) {
-        return res.status(400).render('tasks/create', { error: getErrorMessage(error) });
+        return res.status(400).render('tasks/create', { error: getErrorMessage(error), employees });
     }
 
     const taskId = await taskService.find(title);
