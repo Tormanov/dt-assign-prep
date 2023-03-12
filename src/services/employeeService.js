@@ -23,10 +23,22 @@ exports.edit = (employeeId, employeeData) => Employee.findByIdAndUpdate(employee
 
 exports.delete = (employeeId) => Employee.findByIdAndDelete(employeeId);
 
+exports.completeTask = (employeeId) => Employee.findByIdAndUpdate(employeeId, {
+    $inc: {
+        tasksCompleted: 1
+    }
+});
+
 exports.find = (employeeId) => Employee.findById(employeeId).populate('name').then(employee => {
     return employee.name;
 });
 
-exports.updateTask = (employeeId, task) => Employee.findByIdAndUpdate(employeeId, {
-    $set: { tasksAssigned: task }
+exports.addTask = (employeeId, task) => Employee.findByIdAndUpdate(employeeId, {
+    $push: { tasksAssigned: task }
 });
+
+exports.removeTask = (taskId) => Employee.findOneAndUpdate({ tasksAssigned: taskId }, {
+    $pull: {
+        tasksAssigned: taskId
+    }
+})

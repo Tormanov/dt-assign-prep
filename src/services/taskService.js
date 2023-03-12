@@ -29,4 +29,6 @@ exports.find = (taskTitle) => Task.find({ title: `${taskTitle}` })
     })
     .catch(err => console.log(err));
 
-
+exports.updateStatus = (taskId) => Task.findByIdAndUpdate(taskId, {
+    $set: { status: 'Completed' }
+})

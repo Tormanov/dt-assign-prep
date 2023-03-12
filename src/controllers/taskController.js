@@ -17,12 +17,22 @@ router.get('/search', async (req, res) => {
     res.render('tasks/search', { tasks })
 });
 
+router.get('/:taskId/complete', async (req, res) => {
+    const task = await taskService.getOne(req.params.taskId);
+    await taskService.updateStatus(req.params.taskId);
+    await employeeService.completeTask(task.assignee);
+
+    res.redirect('/tasks/all')
+
+});
 
 router.get('/:taskId/details', async (req, res) => {
     const task = await taskService.getOne(req.params.taskId);
-    //TODO: Show tasks assigned to task
-
-    res.render('tasks/details', { task });
+    let isNotCompleted = true;
+    if (task.status === 'Completed') {
+        isNotCompleted = false;
+    };
+    res.render('tasks/details', { task, isNotCompleted });
 });
 
 router.get('/:taskId/edit', async (req, res) => {
@@ -34,13 +44,23 @@ router.get('/:taskId/edit', async (req, res) => {
 router.post('/:taskId/edit', async (req, res) => {
 
     const { title, description, assignee, dueDate } = req.body;
+
     try {
+
         const assigneeName = await employeeService.find(assignee);
+
+
+        await employeeService.removeTask(req.params.taskId)
         await taskService.edit(req.params.taskId, { title, description, assignee, assigneeName, dueDate });
-        res.render('tasks/details', { task });
+
+        const taskId = await taskService.find(title);
+        await employeeService.addTask(assignee, taskId);
+
+        res.redirect(`/tasks/${req.params.taskId}/details`);
     }
     catch (error) {
-        return res.status(400).render(`tasks/details`, { error: getErrorMessage(error), title, description, assignee, dueDate });
+        const employees = await employeeService.getAll();
+        return res.status(400).render(`tasks/edit`, { error: getErrorMessage(error), task: { title, description, assignee, dueDate }, employees });
     }
 
 });
@@ -75,7 +95,7 @@ router.post('/create', async (req, res) => {
     }
 
     const taskId = await taskService.find(title);
-    await employeeService.updateTask(assignee, taskId);
+    await employeeService.addTask(assignee, taskId);
     res.redirect('/tasks/all');
 
 });
