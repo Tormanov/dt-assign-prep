@@ -22,3 +22,11 @@ exports.create = (employeeData) => Employee.create({ ...employeeData });
 exports.edit = (employeeId, employeeData) => Employee.findByIdAndUpdate(employeeId, employeeData);
 
 exports.delete = (employeeId) => Employee.findByIdAndDelete(employeeId);
+
+exports.find = (employeeId) => Employee.findById(employeeId).populate('name').then(employee => {
+    return employee.name;
+});
+
+exports.updateTask = (employeeId, task) => Employee.findByIdAndUpdate(employeeId, {
+    $set: { tasksAssigned: task }
+});

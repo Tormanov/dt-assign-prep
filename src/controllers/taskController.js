@@ -1,6 +1,7 @@
 const router = require('express').Router();
 
 const { getErrorMessage } = require('../utils/errorUtils');
+const employeeService = require('../services/employeeService');
 const taskService = require('../services/taskService');
 
 
@@ -47,21 +48,29 @@ router.get('/:taskId/delete', async (req, res) => {
 });
 
 
-router.get('/create', (req, res) => {
-    res.render('tasks/create');
+router.get('/create', async (req, res) => {
+    const employees = await employeeService.getAll();
+
+    res.render('tasks/create', { employees });
 });
 
 router.post('/create', async (req, res) => {
-    const taskData = req.body;
+    const { title, description, assignee, dueDate } = req.body;
 
     try {
-        await taskService.create(taskData);
+
+        const assigneeName = await employeeService.find(assignee);
+        await taskService.create({ title, description, assignee, assigneeName, dueDate, status: 'Incomplete' });
+
 
     } catch (error) {
         return res.status(400).render('tasks/create', { error: getErrorMessage(error) });
     }
 
+    const taskId = await taskService.find(title);
+    await employeeService.updateTask(assignee, taskId);
     res.redirect('/tasks/all');
+
 });
 
 

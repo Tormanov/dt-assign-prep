@@ -1,17 +1,34 @@
 <main>
     <section class="crypto-market">
-        <h1><span>Crypto</span> Trade</h1>
-        {{#if crypto}}
-        <div class="offer-list">
-            {{#each crypto}}
-            {{>crypto}}
-            {{/each}}
+        <h1><span>Tasks</span></h1>
+        <a href="/tasks/create" class="add">Add Task</a>
+        {{#if tasks}}
+        <div class="table-wrapper">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th class="table-header-task">Task</th>
+                        <th class="table-header-status">Status</th>
+                        <th class="table-header-assignee">Assignee</th>
+                        <th class="table-header-details">Details</th>
+
+                    </tr>
+                </thead>
+                {{#each tasks}}
+                {{>taskTableRow}}
+                {{/each}}
+            </table>
+
         </div>
+
+
         {{else}}
-        <div class="no-offer">
-            <p>There are no crypto offers found!</p>
+        <div class="no-employee">
+            <p>There are no current tasks!</p>
         </div>
+
 
         {{/if}}
     </section>
+
 </main>

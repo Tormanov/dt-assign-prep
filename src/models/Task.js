@@ -14,8 +14,20 @@ const taskSchema = new mongoose.Schema({
         ref: 'Employee',
         required: true
     },
+    assigneeName: {
+        type: String,
+        ref: 'Employee',
+        required: true
+    },
     dueDate: {
-        type: Date,
+        type: String,
+        required: true,
+        min: '2000-01-01',
+        match: /^\d{4}-\d{2}-\d{2}$/,
+
+    },
+    status: {
+        type: String,
         required: true
     }
 });

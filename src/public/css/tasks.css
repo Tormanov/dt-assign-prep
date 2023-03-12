@@ -1,0 +1,88 @@
+/* Table */
+
+.table {
+  width: 100%;
+  border-spacing: 0px;
+}
+
+.table thead {
+  position: sticky;
+  width: 100%;
+  top: 0;
+  background: white;
+  z-index: 1;
+}
+
+.table thead tr {
+  background-color: #24292f;
+  color: white;
+}
+
+.table th {
+  padding-top: 5px;
+  padding-bottom: 5px;
+  text-align: left;
+  padding: 8px;
+  text-align: center;
+}
+
+.table tr th,
+.table tr td {
+  border-right: 1px solid white;
+}
+
+.table tr th:first-of-type,
+.table tr td:first-of-type {
+  border-left: 1px solid white;
+}
+
+.table-header-task {
+  width: 60%;
+}
+
+.table-header-status,
+.table-header-action {
+  width: 20%;
+}
+
+.table tbody tr {
+  margin: 0px 5px;
+  height: 64px;
+}
+
+.table tbody tr:hover {
+  background: rgba(51, 49, 49, 0.8);
+  color: white;
+}
+
+.table tbody td {
+  line-height: 1.5rem;
+  text-align: center;
+  vertical-align: middle;
+  font-weight: 300;
+  padding: 5px;
+  height: 64px;
+  border-bottom: 1px solid white;
+}
+
+/* Table item */
+
+.todo {
+  margin-bottom: 5px;
+  background-color: rgb(163, 95, 95);
+}
+
+.is-completed {
+  background-color: rgb(95, 163, 101);
+}
+
+.todo-action .todo-btn {
+  background: #24292f;
+  border: none;
+  padding: 5px 10px;
+  height: 40px;
+  color: white;
+  cursor: pointer;
+  border-radius: 0.25rem;
+  font-weight: bold;
+}
