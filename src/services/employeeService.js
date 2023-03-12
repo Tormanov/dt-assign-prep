@@ -16,7 +16,6 @@ exports.search = async (name, phone) => {
     return employee;
 };
 
-
 exports.create = (employeeData) => Employee.create({ ...employeeData });
 
 exports.edit = (employeeId, employeeData) => Employee.findByIdAndUpdate(employeeId, employeeData);
@@ -42,3 +41,7 @@ exports.removeTask = (taskId) => Employee.findOneAndUpdate({ tasksAssigned: task
         tasksAssigned: taskId
     }
 })
+
+exports.getTop = () => Employee.find({}).lean()
+    .sort({ tasksCompleted: -1 })
+    .limit(5)

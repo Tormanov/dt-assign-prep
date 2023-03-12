@@ -3,7 +3,8 @@ const employeeService = require('../services/employeeService');
 
 
 router.get('/', async (req, res) => {
-    const employees = await employeeService.getAll();
+    const employees = await employeeService.getTop();
+
     res.render('home', { employees })
 });
 
