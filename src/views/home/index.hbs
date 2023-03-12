@@ -2,11 +2,18 @@
     <div class="content">
         <h1>Employees <span>Top 5</span></h1>
         <section class="employee-app">
+            {{#if employees}}
             <div class="offer-list">
                 {{#each employees}}
                 {{>employee}}
                 {{/each}}
             </div>
+
+            {{else}}
+            <div class="no-employee">
+                <p>There are no employees found! <a href="/employees/create">Add Employee</a> to begin.</p>
+            </div>
+            {{/if }}
         </section>
         <a href="/employees/all" class="add">See All</a>
     </div>
