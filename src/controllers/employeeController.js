@@ -55,7 +55,7 @@ router.post('/create', async (req, res) => {
     const employeeData = req.body;
 
     try {
-        await employeeService.create(employeeData);
+        await employeeService.create({ ...employeeData, tasksCompleted: 0 });
 
     } catch (error) {
         return res.status(400).render('employees/create', { error: getErrorMessage(error) });

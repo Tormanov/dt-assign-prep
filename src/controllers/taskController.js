@@ -27,16 +27,22 @@ router.get('/:taskId/details', async (req, res) => {
 
 router.get('/:taskId/edit', async (req, res) => {
     const task = await taskService.getOne(req.params.taskId);
-
-    res.render('tasks/edit', { task });
+    const employees = await employeeService.getAll();
+    res.render('tasks/edit', { task, employees });
 });
 
 router.post('/:taskId/edit', async (req, res) => {
-    const taskData = req.body;
 
-    await taskService.edit(req.params.taskId, taskData);
+    const { title, description, assignee, dueDate } = req.body;
+    try {
+        const assigneeName = await employeeService.find(assignee);
+        await taskService.edit(req.params.taskId, { title, description, assignee, assigneeName, dueDate });
+        res.render('tasks/details', { task });
+    }
+    catch (error) {
+        return res.status(400).render(`tasks/details`, { error: getErrorMessage(error), title, description, assignee, dueDate });
+    }
 
-    res.redirect(`/tasks/${req.params.taskId}/details`);
 });
 
 router.get('/:taskId/delete', async (req, res) => {

@@ -35,6 +35,9 @@ const employeeSchema = new mongoose.Schema({
         type: mongoose.Types.ObjectId,
         ref: 'Task'
     }],
+    tasksCompleted: {
+        type: Number,
+    }
 });
 
 const Employee = mongoose.model('Employee', employeeSchema);

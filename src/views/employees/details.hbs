@@ -2,15 +2,16 @@
     <section id="details-info">
         <h1>Details</h1>
         <div class="coin-image">
-            <img src="{{crypto.image}}">
+            <img src="/static/images/user.png">
         </div>
 
         <div class="coin-info">
             <div class="coin-text">
                 <h1 id="name">{{employee.name}}</h1>
-                <h3 id="payment">Email: {{employee.email}}</h3>
-                <h3 id="payment">Phone: {{employee.phone}}</h3>
+                <h3 id="dateDue">Email: {{employee.email}}</h3>
+                <h3 id="dateDue">Phone: {{employee.phone}}</h3>
                 <p id="price"><span>Monthly Salary: ${{employee.monthlySalary}}</span></p>
+                <p id="description">{{employee.tasksCompleted}}</p>
                 <p id="description">{{employee.tasksAssigned}}</p>
             </div>
             <div class="product-btn">
